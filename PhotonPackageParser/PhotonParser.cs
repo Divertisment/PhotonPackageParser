@@ -1,8 +1,8 @@
 ﻿using Protocol16;
+using Protocol16.Photon;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Protocol16.Photon;
 
 namespace PhotonPackageParser
 {
@@ -64,8 +64,9 @@ namespace PhotonPackageParser
         private void HandleCommand(byte[] source, ref int offset)
         {
             ReadByte(out byte commandType, source, ref offset);
-            ReadByte(out byte channelId, source, ref offset);
-            ReadByte(out byte commandFlags, source, ref offset);
+            //ReadByte(out byte channelId, source, ref offset);
+            //ReadByte(out byte commandFlags, source, ref offset);
+
             // Skip 1 byte
             offset++;
             NumberDeserializer.Deserialize(out int commandLength, source, ref offset);
@@ -107,8 +108,13 @@ namespace PhotonPackageParser
             // Skip 1 byte
             offset++;
             commandLength--;
-            ReadByte(out byte messageType, source, ref offset);
+            ReadByte(out var messageType, source, ref offset);
             commandLength--;
+
+            if (messageType > 2)
+            {
+                return;
+            }
 
             int operationLength = commandLength;
             var payload = new Protocol16Stream(operationLength);
@@ -141,6 +147,11 @@ namespace PhotonPackageParser
 
         private void HandleSendFragment(byte[] source, ref int offset, ref int commandLength)
         {
+            if (offset + 20 > source.Length)
+            {
+                return;
+            }
+
             NumberDeserializer.Deserialize(out int startSequenceNumber, source, ref offset);
             commandLength -= 4;
             NumberDeserializer.Deserialize(out int fragmentCount, source, ref offset);
@@ -152,20 +163,20 @@ namespace PhotonPackageParser
             NumberDeserializer.Deserialize(out int fragmentOffset, source, ref offset);
             commandLength -= 4;
 
-            int fragmentLength = commandLength;
+            var fragmentLength = commandLength;
             HandleSegmentedPayload(startSequenceNumber, totalLength, fragmentLength, fragmentOffset, source, ref offset);
         }
 
         private void HandleFinishedSegmentedPackage(byte[] totalPayload)
         {
-            int offset = 0;
-            int commandLength = totalPayload.Length;
+            var offset = 0;
+            var commandLength = totalPayload.Length;
             HandleSendReliable(totalPayload, ref offset, ref commandLength);
         }
 
         private void HandleSegmentedPayload(int startSequenceNumber, int totalLength, int fragmentLength, int fragmentOffset, byte[] source, ref int offset)
         {
-            SegmentedPackage segmentedPackage = GetSegmentedPackage(startSequenceNumber, totalLength);
+            var segmentedPackage = GetSegmentedPackage(startSequenceNumber, totalLength);
 
             Buffer.BlockCopy(source, offset, segmentedPackage.TotalPayload, fragmentOffset, fragmentLength);
             offset += fragmentLength;
@@ -195,7 +206,7 @@ namespace PhotonPackageParser
             return segmentedPackage;
         }
 
-        private static void ReadByte(out byte value, byte[] source, ref int offset)
+        private static void ReadByte(out byte value, IReadOnlyList<byte> source, ref int offset)
         {
             value = source[offset++];
         }
