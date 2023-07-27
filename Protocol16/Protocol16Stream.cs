@@ -126,23 +126,26 @@ namespace Protocol16
             _position = sum;
         }
 
-        private bool ExpandIfNeeded(long requiredSize)
+        private void ExpandIfNeeded(long requiredSize)
         {
             if (requiredSize <= Capacity)
             {
-                return false;
+                return;
             }
-            int newCapacity = Capacity;
+
+            var newCapacity = Capacity;
+
             if (newCapacity == 0)
             {
                 newCapacity = 1;
             }
+
             while (requiredSize > newCapacity)
             {
                 newCapacity *= 2;
             }
+
             Array.Resize(ref _buffer, newCapacity);
-            return true;
         }
     }
 }

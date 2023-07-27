@@ -87,7 +87,10 @@ namespace Protocol16
         {
             output.WriteTypeCodeIfTrue(Protocol16Type.ByteArray, writeTypeCode);
             SerializeInteger(output, arraySegment.Count, false);
-            output.Write(arraySegment.Array, arraySegment.Offset, arraySegment.Count);
+            if (arraySegment.Array != null)
+            {
+                output.Write(arraySegment.Array, arraySegment.Offset, arraySegment.Count);
+            }
         }
 
         private static void SerializeBoolean(Protocol16Stream output, bool value, bool writeTypeCode)

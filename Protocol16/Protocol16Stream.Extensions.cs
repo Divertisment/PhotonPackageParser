@@ -1,6 +1,6 @@
 ﻿namespace Protocol16
 {
-    static class Protocol16StreamExtensions
+    internal static class Protocol16StreamExtensions
     {
         public static void WriteTypeCodeIfTrue(this Protocol16Stream output, Protocol16Type type, bool writeTypeCode)
         {
