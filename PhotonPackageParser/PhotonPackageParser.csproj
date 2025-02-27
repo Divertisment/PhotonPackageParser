@@ -17,8 +17,12 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Protocol16\Protocol16.csproj" PrivateAssets="all" IncludeAssets="all" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Protocol16\Protocol16.csproj" PrivateAssets="all">
+			<IncludeAssets>runtime; build; contentfiles; analyzers</IncludeAssets>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</ProjectReference>
 
+		<None Include="..\Protocol16\bin\Release\net8.0\Protocol16.dll" Pack="true" PackagePath="lib/net8.0/" />
+	</ItemGroup>
 </Project>
