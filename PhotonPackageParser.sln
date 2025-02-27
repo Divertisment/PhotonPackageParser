@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonPackageParser", "PhotonPackageParser\PhotonPackageParser.csproj", "{F5C56CBB-25DC-41CF-8E99-FA19AA241FB9}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol16", "Protocol16\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol16.Tests", "Protocol16.Tests\Protocol16.Tests.csproj", "{9013BA69-AC7C-4BA5-B1AF-B559F6DEE218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonPackageParser.Example", "PhotonPackageParser.Example\PhotonPackageParser.Example.csproj", "{F9674CFC-E2FC-447C-A3C0-211D167CA575}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotonPackageParser.Example", "..\PhotonPackageParser\PhotonPackageParser.Example\PhotonPackageParser.Example.csproj", "{1E9462DF-8F7D-4957-A43A-821193A55371}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{9013BA69-AC7C-4BA5-B1AF-B559F6DEE218}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9013BA69-AC7C-4BA5-B1AF-B559F6DEE218}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9013BA69-AC7C-4BA5-B1AF-B559F6DEE218}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9674CFC-E2FC-447C-A3C0-211D167CA575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9674CFC-E2FC-447C-A3C0-211D167CA575}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9674CFC-E2FC-447C-A3C0-211D167CA575}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9674CFC-E2FC-447C-A3C0-211D167CA575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9462DF-8F7D-4957-A43A-821193A55371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9462DF-8F7D-4957-A43A-821193A55371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9462DF-8F7D-4957-A43A-821193A55371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9462DF-8F7D-4957-A43A-821193A55371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

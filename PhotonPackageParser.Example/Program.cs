@@ -1,7 +1,5 @@
 ﻿using PacketDotNet;
 using SharpPcap;
-using System;
-using System.Threading.Tasks;
 
 namespace PhotonPackageParser.Example
 {
