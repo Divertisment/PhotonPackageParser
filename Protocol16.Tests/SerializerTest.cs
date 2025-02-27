@@ -16,9 +16,9 @@ namespace Protocol16.Tests
             int offset = 0;
 
             NumberSerializer.Serialize(1234, buffer, ref offset);
-
-            Assert.AreEqual(resultBuffer, buffer);
-            Assert.AreEqual(4, offset);
+            
+            Assert.That(resultBuffer, Is.EqualTo(buffer));
+            Assert.That(offset, Is.EqualTo(4));
         }
     }
 }

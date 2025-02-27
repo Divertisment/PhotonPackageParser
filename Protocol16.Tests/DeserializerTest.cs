@@ -1,38 +1,37 @@
 ﻿using NUnit.Framework;
 using Protocol16.Photon;
 
-namespace Protocol16.Tests
+namespace Protocol16.Tests;
+
+public class DeserializerTest
 {
-    public class DeserializerTest
+    [Test]
+    public void DeserializeShort()
     {
-        [Test]
-        public void DeserializeShort()
+        var buffer = new byte[]
         {
-            var buffer = new byte[]
-            {
-                127, 255
-            };
-            int offset = 0;
+            127, 255
+        };
+        int offset = 0;
 
-            NumberDeserializer.Deserialize(out short result, buffer, ref offset);
+        NumberDeserializer.Deserialize(out short result, buffer, ref offset);
 
-            Assert.AreEqual(short.MaxValue, result);
-            Assert.AreEqual(2, offset);
-        }
+        Assert.That(result, Is.EqualTo(short.MaxValue));
+        Assert.That(offset, Is.EqualTo(2));
+    }
 
-        [Test]
-        public void DeserializeInteger()
+    [Test]
+    public void DeserializeInteger()
+    {
+        var buffer = new byte[]
         {
-            var buffer = new byte[]
-            {
-                127, 255, 255, 255
-            };
-            int offset = 0;
+            0, 0, 127, 255
+        };
+        int offset = 0;
 
-            NumberDeserializer.Deserialize(out int result, buffer, ref offset);
+        NumberDeserializer.Deserialize(out int result, buffer, ref offset);
 
-            Assert.AreEqual(int.MaxValue, result);
-            Assert.AreEqual(4, offset);
-        }
+        Assert.That(result, Is.EqualTo(short.MaxValue));
+        Assert.That(offset, Is.EqualTo(4));
     }
 }
